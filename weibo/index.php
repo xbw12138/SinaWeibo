@@ -71,29 +71,29 @@ if (!empty($post_msg_str)) {
             $data = mysql_num_rows($result);
             $name=getNickname($receiver_id);
             if($data){
-                $str_data="欢迎回来-亲爱的".$name."\n"
+                $str_data="欢迎回来-亲爱的@".$name."\n"
                 ."您的账号已经绑定"."\n"
                 ."您已经领取过激活码"."\n"
                 ."不要太贪心哦"."\n"
-                ."--DMT许博文开发测试";
+                ."@DMT许博文 开发测试";
             }else{
                 $code = getInviteCode();
                 $sql="INSERT INTO user(uid,nickname,code)VALUES('$receiver_id', '$name','$code')";
                 $result = mysql_query($sql);
                 if($result){
-                    $str_data="用户绑定成功--".$name."\n"
+                    $str_data="用户绑定成功--@".$name."\n"
                     ."您的激活码:"."\n"
                     .$code."\n"
                     ."请前往http://v.ecfun.cc注册激活"."\n"
                     ."感谢您的支持"."\n"
-                    ."--DMT许博文开发测试";
+                    ."@DMT许博文 开发测试";
                 }else{
                     $str_data="用户绑定失败";
                 }
             }
         }else if($function=="3"){
             $name=getNickname($receiver_id);
-            $str_data="欢迎回来-亲爱的".$name."\n"
+            $str_data="欢迎回来-亲爱的@".$name."\n"
             ."快捷功能(回复)"."\n"
             ."--------------------"."\n"
             ."激活码"."\n"
@@ -102,7 +102,7 @@ if (!empty($post_msg_str)) {
             ."说出你想要的功能吧"."\n"
             ."如果你不想看到自动回复-"."\n"
             ."那请在消息前加 * "."\n"
-            ."--DMT许博文开发测试";
+            ."@DMT许博文 开发测试";
         }
         //回复text类型的消息示例。
         $data_type = "text";
