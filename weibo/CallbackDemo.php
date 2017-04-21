@@ -50,7 +50,8 @@
 					."不要太贪心哦"."\n"
 					."@DMT许博文 开发测试";
 				}else{
-					if(setCode()){
+					$code=setCode();
+					if($code!="null"){
 						$str_data="您的激活码:"."\n"
 						.$code."\n"
 						."请前往http://v.ecfun.cc注册激活"."\n"
@@ -74,8 +75,9 @@
 				."@DMT许博文 开发测试";
 			}	
 		}else{
+			$str_data="欢迎回来-亲爱的\n@".$name."\n请先绑定账号再使用此功能";
 			if($functions=="binding"){
-				if(userInsert()){
+				if(userInsert($name)){
 					$str_data="用户绑定成功";
 				}else{
 					$str_data="用户绑定失败";
@@ -84,7 +86,7 @@
 		}
 		if($functions=="explain"){
 			$str_data="---使用说明---\n亲爱的\n@".$name."\n绑定账号后\n通过菜单指令以及关键字回复\n完成以下功能\n"
-			."-------------\n1.账号绑定\n2.获取激活码\n3.vpn状态查看\n4.vpn服务器启动\n5.vpn程序运行\n6.vpn ss获取\n@DMT许博文 开发测试";
+			."-------------\n1.账号绑定【绑定账号】\n2.获取激活码【激活码】\n3.vpn状态查看【状态】\n4.vpn服务器启动【启动】\n5.vpn程序运行【运行】\n6.vpn ss获取【获取ss】\n@DMT许博文 开发测试";
 		}
 		if($functions!="!null"){
 			sendMessage($str_data,"text");
@@ -137,9 +139,9 @@
 		$sql="update user set code='$code' where uid=$receiver_id";
 		$result = mysql_query($sql);
 		if($result){
-			return true;
+			return $code;
 		}else{
-			return false;
+			return "null";
 		}
 		
 	}
@@ -160,9 +162,10 @@
 		}
 		
 	}
-	function userInsert(){
+	function userInsert($name){
 		//绑定用户
-		$name=getNickname();
+		global $post_msg_str;
+		$receiver_id = $post_msg_str['sender_id'];  
 		$code="1";
 		$sql="INSERT INTO user(uid,nickname,code)VALUES('$receiver_id','$name','$code')";
 		$result=mysql_query($sql);
