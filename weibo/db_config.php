@@ -3,10 +3,16 @@ $mysql_server_name='localhost';
  
 $mysql_username='root'; 
  
-$mysql_password='xbw12138'; 
+$mysql_password='password'; 
  
 $mysql_database='SinaWeibo'; 
 
-$access_token='';
+$email="vpn";
+
+$password="password";
+
+$secret="sinasecret";
+
+$access_token="sinatoken";
 
 ?>
