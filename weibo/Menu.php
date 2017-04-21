@@ -34,11 +34,11 @@
 				},
 				{
 					"type": "click",
-					"name": "开发中……",
-					"key": "the_big_brother_need_your_phone"
+					"name": "说明",
+					"key": "explain"
 				},
 				{
-					"name": "菜单",
+					"name": "我的",
 					"sub_button": [
 						{
 							"type": "view",
@@ -47,8 +47,13 @@
 						},
 						{
 							"type": "click",
+							"name": "绑定账号",
+							"key": "binding"
+						},
+						{
+							"type": "click",
 							"name": "激活码",
-							"key": "memeda"
+							"key": "active"
 						}
 					]
 				}
