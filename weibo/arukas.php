@@ -19,7 +19,12 @@
 	$status=$attributes['is_running'];
 	$status_text=$attributes['status_text'];
 	$port_mappings=$attributes['port_mappings'];
-	
+
+	function getInfo(){
+		global $result2;
+		return $result2;
+	}	
+
 	function getStatus() {
 		global $status_text;
 		return $status_text;
@@ -58,6 +63,8 @@
 			$resultss=json_decode(getSSH($host,$ports),true);
 			return $resultss['message'];
 			//var_dump(ssh_exec($host, $ports, $ssh_username, $ssh_password, $command));
+		}else{
+			return "服务器启动失败";
 		}
 	}
 	function getSs() {
@@ -74,6 +81,8 @@
 		}else if($port3['container_port']==8989){
 			$isMatched = preg_match_all('/[1-9]\d*/', $port3['host'], $matches);
 			return "ss://aes-256-cfb:xbw12138@".$matches[0][0].".".$matches[0][1].".".$matches[0][2].".".$matches[0][3].":".$port3['service_port'];
+		}else{
+			return "服务器启动失败";
 		}
 
 	}
