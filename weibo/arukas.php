@@ -41,28 +41,22 @@
 			$isMatched = preg_match_all('/[1-9]\d*/', $port1['host'], $matches);
 			$host=$matches[0][0].".".$matches[0][1].".".$matches[0][2].".".$matches[0][3];
 			$ports=$port1['service_port'];
-			$ssh_username="root";
-			$ssh_password="password";
-			$command="/home/ss.sh";
-			return getSSH($host,$ports);
+			$resultss=json_decode(getSSH($host,$ports),true);
+			return $resultss['message'];
 			//var_dump(ssh_exec($host, $ports, $ssh_username, $ssh_password, $command));
 		}else if($port2['container_port']==22){
 			$isMatched = preg_match_all('/[1-9]\d*/', $port2['host'], $matches);
 			$host=$matches[0][0].".".$matches[0][1].".".$matches[0][2].".".$matches[0][3];
-			$ports=$port2['service_port'];
-			$ssh_username="root";
-			$ssh_password="password";
-			$command="/home/ss.sh";		
-			return getSSH($host,$ports);
+			$ports=$port2['service_port'];	
+			$resultss=json_decode(getSSH($host,$ports),true);
+			return $resultss['message'];
 			//var_dump(ssh_exec($host, $ports, $ssh_username, $ssh_password, $command));
 		}else if($port3['container_port']==22){
 			$isMatched = preg_match_all('/[1-9]\d*/', $port3['host'], $matches);
 			$host=$matches[0][0].".".$matches[0][1].".".$matches[0][2].".".$matches[0][3];
 			$ports=$por3['service_port'];
-			$ssh_username="root";
-			$ssh_password="password";
-			$command="/home/ss.sh";
-			return getSSH($host,$ports);
+			$resultss=json_decode(getSSH($host,$ports),true);
+			return $resultss['message'];
 			//var_dump(ssh_exec($host, $ports, $ssh_username, $ssh_password, $command));
 		}
 	}

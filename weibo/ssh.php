@@ -1,6 +1,6 @@
 <?php
-	$host=$_POST['host'];
-	$ports=$_POST['port'];
+	$host=$_GET['host'];
+	$ports=$_GET['port'];
 	$ssh_username="root";
 	$ssh_password="password";
 	$command="/home/ss.sh";

@@ -196,38 +196,17 @@ function startContainer($containerID,$cookie){
     curl_close($curl);
 }
 function getSSH($host,$port){
-    $url='http://182.254.146.68/ssh/ssh.php';
-    $postdata = array('host' =>$host ,'port'=>$port);
+    $url='http://182.254.146.68/ssh/ssh.php?host='.$host.'&port='.$port;
     $curl=curl_init($url);
     curl_setopt($curl,CURLOPT_HEADER, 0);
+    curl_setopt($curl, CURLOPT_TIMEOUT, 1);
     curl_setopt($curl,CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl,CURLOPT_CUSTOMREQUEST, 'POST');
-    curl_setopt($curl,CURLOPT_POSTFIELDS,$postdata);
     curl_setopt($curl,CURLOPT_SSL_VERIFYPEER, false);
-    $api=curl_exec($curl);
-    $httpCode = curl_getinfo($curl,CURLINFO_HTTP_CODE); 
-    if($httpCode==200){
-        return json_encode($api);
-    }elseif($httpCode==404){
-        $array = array( 
-        'status'=>404, 
-        'message'=>'Not found',
-        ); 
-        return json_encode($array);
-    }else if($httpCode==401){
-        $array = array( 
-        'status'=>401, 
-        'message'=>'Not authorized',
-        ); 
-        return json_encode($array);
-    }else{
-        $array = array( 
-        'status'=>444, 
-        'message'=>'An unknown error',
-        ); 
-        return json_encode($array);
-    }
+    curl_exec($curl);
+    $array = array( 'status'=>200, 'message'=>'Starting Shadowsocks-go success'); 
+    return json_encode($array);
     curl_close($curl);
 }
+
 
 ?>
