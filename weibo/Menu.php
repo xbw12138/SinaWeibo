@@ -22,11 +22,6 @@
 						},
 						{
 							"type": "click",
-							"name": "运行",
-							"key": "run"
-						},
-						{
-							"type": "click",
 							"name": "获取ss",
 							"key": "result"
 						}
