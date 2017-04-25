@@ -74,9 +74,9 @@
 				}
 				$str_data=$str."\n如果实例没有运行\n回复 &start&ID 开启\n@DMT许博文 开发测试";
 			}else if($functions=="start"){
-				$str_data=startApp()."\n"."@DMT许博文 开发测试";
+				//$str_data=startApp()."\n"."@DMT许博文 开发测试";
 			}else if($functions=="run"){
-				$str_data=runSs()."\n"."@DMT许博文 开发测试";
+				//$str_data=runSs()."\n"."@DMT许博文 开发测试";
 			}else if($functions=="result"){
 				$arrayss=getArraySs();
 				$str="";
@@ -104,7 +104,7 @@
 		}
 		if($functions=="explain"){
 			$str_data="---使用说明---\n亲爱的\n@".$name."\n绑定账号后\n通过菜单指令以及关键字回复\n完成以下功能\n"
-			."-------------\n1.账号绑定【绑定账号】\n2.获取激活码【激活码】\n3.vpn状态查看【状态】\n4.vpn ss获取【获取ss】\n-------------\n@DMT许博文 开发测试";
+			."-------------\n1.账号绑定【绑定账号】\n2.获取激活码【激活码】\n3.vpn状态查看【状态】\n4.vpn ss获取【获取】\n-------------\n@DMT许博文 开发测试";
 		}
 		if($functions!="!null"){
 			sendMessage($str_data,"text");
@@ -144,7 +144,7 @@
 				return "run";
 			}else if($post_msg_str['text']=="启动"){
 				return "start";
-			}else if($post_msg_str['text']=="获取ss"){
+			}else if($post_msg_str['text']=="获取"){
 				return "result";
 			}else if($post_msg_str['text']=="绑定账号"){
 				return "binding";
