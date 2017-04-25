@@ -23,8 +23,7 @@
 		$status_text=$attributes['status_text'];
 		$port_mappings=$attributes['port_mappings'];
 
-		$array=array('name' => $name, 'id' => $id, 'status_text' =>$status_text, 'ss'=>getSs($port_mappings));
-		$SsResult[]=$array;
+		$SsResult[]=getSs($port_mappings);
 		$array=array('name' => $name, 'id' => $id, 'status_text' =>$status_text);
 		$StatusResult[]=$array;
 	}

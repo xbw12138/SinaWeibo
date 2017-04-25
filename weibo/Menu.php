@@ -17,12 +17,7 @@
 						},
 						{
 							"type": "click",
-							"name": "启动",
-							"key": "start"
-						},
-						{
-							"type": "click",
-							"name": "获取ss",
+							"name": "获取",
 							"key": "result"
 						}
 					]

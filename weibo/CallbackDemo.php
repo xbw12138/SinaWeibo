@@ -41,6 +41,11 @@
 		$str_data="";
 		$null="null";
 		$functions=getFunction();
+		$funcstart=substr($functions, 0, 1 );
+		$funcs="0";
+		if($funcstart=="&"){
+			$funcs="1";
+		}
 		$name=getNickname();
 		if(userExist()){
 			if($functions=="active"){
@@ -62,19 +67,31 @@
 					}
 				}
 			}else if($functions=="status"){
-				$str_data="服务器当前状态：".getStatus()."\n"."@DMT许博文 开发测试";
+				$array=getArrayStatus();
+				$str="";
+				foreach($array as &$data){
+					$str.="【实例】:".$data["name"]."\n【状态】:".$data['status_text']."\n【ID】:".$data['id']."\n\n";
+				}
+				$str_data=$str."\n如果实例没有运行\n回复 &start&ID 开启\n@DMT许博文 开发测试";
 			}else if($functions=="start"){
 				$str_data=startApp()."\n"."@DMT许博文 开发测试";
 			}else if($functions=="run"){
 				$str_data=runSs()."\n"."@DMT许博文 开发测试";
 			}else if($functions=="result"){
-				$qrcode=getSs();
-				$str_data="{".$qrcode."}\n输入{}内容到shadowsocks客户端\n或者手动配置\n如果翻墙失败，请查看服务器状态\n或者点击运行等待数秒\n点击链接查看配置二维码\n\n\nhttp://ecfun.cc/sina/qrcode/qrcode.html?url=".$qrcode."\n\n\n@DMT许博文 开发测试";
+				$arrayss=getArraySs();
+				$str="";
+				foreach($arrayss as &$data){
+					$str.="【实例】:".$data["name"]."\n【状态】:".$data['status_text']."\n【ID】:".$data['id']."\n【SS】:{".$data['ss']."}\n【二维码】：http://ecfun.cc/sina/qrcode/qrcode.html?url=".$data['ss']."\n------------------\n";
+				}
+				$str_data=$str."\n输入{}内容到shadowsocks客户端\n或者手动配置\n如果翻墙失败，请查看服务器状态\n或者点击运行等待数秒\n点击链接查看配置二维码\n\n@DMT许博文 开发测试";
 		    }else if($functions=="binding"){
 				$str_data="欢迎回来-亲爱的\n@".$name."\n"
 				."您的账号已经绑定"."\n"
 				."@DMT许博文 开发测试";
-			}	
+			}else if($funcs=="1"){
+				$a=explode('&',$functions);
+				$str_data=startApp($a[1])."\n"."@DMT许博文 开发测试";
+			}
 		}else{
 			$str_data="欢迎回来-亲爱的\n@".$name."\n请先绑定账号再使用此功能";
 			if($functions=="binding"){
@@ -87,7 +104,7 @@
 		}
 		if($functions=="explain"){
 			$str_data="---使用说明---\n亲爱的\n@".$name."\n绑定账号后\n通过菜单指令以及关键字回复\n完成以下功能\n"
-			."-------------\n1.账号绑定【绑定账号】\n2.获取激活码【激活码】\n3.vpn状态查看【状态】\n4.vpn服务器启动【启动】\n5.vpn ss获取【获取ss】\n-------------\n@DMT许博文 开发测试";
+			."-------------\n1.账号绑定【绑定账号】\n2.获取激活码【激活码】\n3.vpn状态查看【状态】\n4.vpn ss获取【获取ss】\n-------------\n@DMT许博文 开发测试";
 		}
 		if($functions!="!null"){
 			sendMessage($str_data,"text");
@@ -113,6 +130,12 @@
 				return "explain";
 			}
 		}else if($post_msg_str['type']=="text"){
+			
+			$message=substr($post_msg_str['text'], 0, 6 );
+			if($message=="&start"){
+				$a=explode('&',$post_msg_str['text']);
+				return "&".$a[2];
+			}
 			if($post_msg_str['text']=="激活码"){
 				return "active";//激活码
 			}else if($post_msg_str['text']=="状态"){
