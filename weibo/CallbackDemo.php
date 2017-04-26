@@ -83,7 +83,7 @@
 				foreach($arrayss as &$data){
 					$str.="【实例】:".$data["name"]."\n【状态】:".$data['status_text']."\n【ID】:".$data['id']."\n【SS】:{".$data['ss']."}\n【二维码】：http://ecfun.cc/sina/qrcode/qrcode.html?url=".$data['ss']."\n------------------\n";
 				}
-				$str_data=$str."\n输入{}内容到shadowsocks客户端\n或者手动配置\n如果翻墙失败，请查看服务器状态\n或者点击运行等待数秒\n点击链接查看配置二维码\n\n@DMT许博文 开发测试";
+				$str_data=$str."\n点击查看详细使用说明\n\nhttp://ecfun.cc/sina/weibo/explain.html\n\n或者手动配置\n如果翻墙失败，请查看服务器状态\n或者点击运行等待数秒\n点击链接查看配置二维码\n\n@DMT许博文 开发测试";
 		    }else if($functions=="binding"){
 				$str_data="欢迎回来-亲爱的\n@".$name."\n"
 				."您的账号已经绑定"."\n"
@@ -104,7 +104,7 @@
 		}
 		if($functions=="explain"){
 			$str_data="---使用说明---\n亲爱的\n@".$name."\n绑定账号后\n通过菜单指令以及关键字回复\n完成以下功能\n"
-			."-------------\n1.账号绑定【绑定账号】\n2.获取激活码【激活码】\n3.vpn状态查看【状态】\n4.vpn ss获取【获取】\n-------------\n@DMT许博文 开发测试";
+			."-------------\n1.账号绑定【绑定账号】\n2.获取激活码【激活码】\n3.vpn状态查看【状态】\n4.vpn ss获取【获取】\n-------------\n点击连接查看详细使用说明\n-------------\n\nhttp://ecfun.cc/sina/weibo/explain.html\n\n@DMT许博文 开发测试";
 		}
 		if($functions!="!null"){
 			sendMessage($str_data,"text");
