@@ -59,7 +59,6 @@
 					if($code!="null"){
 						$str_data="您的激活码:"."\n"
 						.$code."\n"
-						."请前往http://v.ecfun.cc注册激活"."\n"
 						."感谢您的支持"."\n"
 						."@DMT许博文 开发测试";
 					}else{
@@ -83,7 +82,7 @@
 				foreach($arrayss as &$data){
 					$str.="【实例】:".$data["name"]."\n【状态】:".$data['status_text']."\n【ID】:".$data['id']."\n【SS】:{".$data['ss']."}\n【二维码】：http://ecfun.cc/sina/qrcode/qrcode.html?url=".$data['ss']."\n------------------\n";
 				}
-				$str_data=$str."\n点击查看详细使用说明\n\nhttp://ecfun.cc/sina/weibo/explain.html\n\n或者手动配置\n如果翻墙失败，请查看服务器状态\n或者点击运行等待数秒\n点击链接查看配置二维码\n\n@DMT许博文 开发测试";
+				$str_data=$str."\n点击查看详细使用说明\n\nhttp://ecfun.cc/sina/weibo/explain.html\n\n或者手动配置\n如果翻墙失败，请查看服务器状态\n或者回复 &start&ID 等待数秒\n点击链接查看配置二维码\n\n@DMT许博文 开发测试";
 		    }else if($functions=="binding"){
 				$str_data="欢迎回来-亲爱的\n@".$name."\n"
 				."您的账号已经绑定"."\n"
@@ -107,7 +106,10 @@
 			."-------------\n1.账号绑定【绑定账号】\n2.获取激活码【激活码】\n3.vpn状态查看【状态】\n4.vpn ss获取【获取】\n-------------\n点击连接查看详细使用说明\n-------------\n\nhttp://ecfun.cc/sina/weibo/explain.html\n\n@DMT许博文 开发测试";
 		}
 		if($functions!="!null"){
+			//回复
 			sendMessage($str_data,"text");
+			//操作记录
+			recordInsert($name,$functions);
 		}
 	}
 	function getFunction(){
@@ -185,6 +187,13 @@
 			return false;
 		}
 		
+	}
+	function recordInsert($name,$type){
+		//用户记录
+		global $post_msg_str;
+		$receiver_id = $post_msg_str['sender_id']; 
+		$sql="INSERT INTO record(uid,name,type)VALUES('$receiver_id','$name','$type')";
+		mysql_query($sql);
 	}
 	function userInsert($name){
 		//绑定用户
