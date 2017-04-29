@@ -80,9 +80,9 @@
 				$arrayss=getArraySs();
 				$str="";
 				foreach($arrayss as &$data){
-					$str.="【实例】:".$data["name"]."\n【状态】:".$data['status_text']."\n【ID】:".$data['id']."\n【SS】:{".$data['ss']."}\n【二维码】：http://ecfun.cc/sina/qrcode/qrcode.html?url=".$data['ss']."\n------------------\n";
+					$str.="【实例】:".$data["name"]."\n【二维码】：http://ecfun.cc/sina/qrcode/qrcode.html?url=".$data['ss']."\n------------------\n";
 				}
-				$str_data=$str."\n点击查看详细使用说明\n\nhttp://ecfun.cc/sina/weibo/explain.html\n\n或者手动配置\n如果翻墙失败，请查看服务器状态\n或者回复 &start&ID 等待数秒\n点击链接查看配置二维码\n\n@DMT许博文 开发测试";
+				$str_data=$str."点击查看详细使用说明\nhttp://ecfun.cc/sina/weibo/explain.html\n如果翻墙失败，请查看服务器状态\n或者回复 &start&ID 等待数秒\n@DMT许博文 开发测试";
 		    }else if($functions=="binding"){
 				$str_data="欢迎回来-亲爱的\n@".$name."\n"
 				."您的账号已经绑定"."\n"

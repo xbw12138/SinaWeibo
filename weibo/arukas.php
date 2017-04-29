@@ -23,7 +23,7 @@
 		$status_text=$attributes['status_text'];
 		$port_mappings=$attributes['port_mappings'];
 
-		$array=array('name' => $name, 'id' => $id, 'status_text' =>$status_text, 'ss'=>getSs($port_mappings));
+		$array=array('name' => $name,'ss'=>getSs($port_mappings));
 		$SsResult[]=$array;
 		$array=array('name' => $name, 'id' => $id, 'status_text' =>$status_text);
 		$StatusResult[]=$array;
@@ -85,7 +85,7 @@
 			return $resultss['message'];
 			//var_dump(ssh_exec($host, $ports, $ssh_username, $ssh_password, $command));
 		}else{
-			return "服务器启动失败";
+			return "The_server_to_start_to_fail";
 		}
 	}
 	function getSs($port_mappings) {
@@ -103,7 +103,7 @@
 			$isMatched = preg_match_all('/[1-9]\d*/', $port3['host'], $matches);
 			return "ss://aes-256-cfb:xbw12138@".$matches[0][0].".".$matches[0][1].".".$matches[0][2].".".$matches[0][3].":".$port3['service_port'];
 		}else{
-			return "服务器启动失败";
+			return "The_server_to_start_to_fail";
 		}
 
 	}
