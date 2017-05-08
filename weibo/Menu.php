@@ -8,7 +8,7 @@
 		$data_string='{
 			"button": [
 				{
-					"name": "VPN服务器",
+					"name": "VPN服务",
 					"sub_button": [
 						{
 							"type": "click",
